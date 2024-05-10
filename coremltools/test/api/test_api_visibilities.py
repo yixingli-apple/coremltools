@@ -173,12 +173,15 @@ class TestApiVisibilities:
 
     def test_optimize_coreml(self):
         expected = [
+            "OpActivationLinearQuantizerConfig",
             "OpLinearQuantizerConfig",
             "OpMagnitudePrunerConfig",
             "OpPalettizerConfig",
             "OptimizationConfig",
             "OpThresholdPrunerConfig",
+            "activations_quantization",
             "linear_quantize_weights",
+            "model_debugger",
             "palettize_weights",
             "prune_weights",
             "decompress_weights",

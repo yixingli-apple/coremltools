@@ -778,13 +778,6 @@ class distributive_quantized_binary_op_scale_normalization(AbstractGraphPass):
 
         return dequantize_x, dequantize_y, quantize_z
 
-    def convert_mil_float_dtype_to_np(mil_dtype):
-        if mil_dtype == types.fp16:
-            np_dtype = np.float16
-        else:
-            np_dtype = np.float32
-        return np_dtype
-
     def try_to_transform(
         self, op: Operation, dequantize_x: Operation, dequantize_y: Operation, quantize_z: Operation
     ) -> bool:
@@ -805,6 +798,13 @@ class distributive_quantized_binary_op_scale_normalization(AbstractGraphPass):
             # after swap, if still cannot divide, then give up
             if new_s_x is None and new_s_z is None:
                 return False
+
+        def convert_mil_float_dtype_to_np(mil_dtype):
+            if mil_dtype == types.fp16:
+                np_dtype = np.float16
+            else:
+                np_dtype = np.float32
+            return np_dtype
 
         new_s_x_dtype = convert_mil_float_dtype_to_np(dequantize_x.scale.val.dtype)
         new_s_y_dtype = convert_mil_float_dtype_to_np(dequantize_y.scale.val.dtype)

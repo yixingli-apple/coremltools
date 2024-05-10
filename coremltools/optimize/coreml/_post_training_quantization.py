@@ -185,7 +185,7 @@ def get_tensor_range(tensor_name, tensor_value, activation_stats_dict):
         activation_stats_dict[tensor_name]["rmax"] = tensor_max
 
 
-def get_activation_calibration_stats(fpmodel: _MLModel, sample_data: list[dict]):
+def get_activation_calibration_stats(fpmodel: _MLModel, sample_data: list):
     """
     Calibration and store a dict of intermediate tensor stats.
     E.g. activation_stats_dict = {tensor_0: {rmin: 0.2, rmax: 3.8}, tensor_1: {rmin: 4.5, rmax: 12.6}}}
